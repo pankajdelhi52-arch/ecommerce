@@ -1,24 +1,26 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db'); // Database connection import
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
-const app = express();
-
-// Middleware
-app.use(cors()); // Frontend ko backend se baat karne dene ke liye
-app.use(express.json()); // JSON data parse karne ke liye
-
-// Connect to Database
+console.log(process.env.MONGO_URI);
 connectDB();
 
-// Sample Route
-app.get('/api/message', (req, res) => {
-    res.json({ message: "Hello from the Backend!" });
+const app = express();  // ✅ pehle app banao
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);  // ✅ phir routes lagao
+
+app.get("/", (req, res) => {
+  res.send("Server Running");
 });
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

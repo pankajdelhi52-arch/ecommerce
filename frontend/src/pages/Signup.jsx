@@ -8,6 +8,7 @@ export default function Signup() {
     email: "",
     password: "",
   });
+
   const [msg, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -50,7 +51,7 @@ export default function Signup() {
           </h1>
 
 {msg && (
-            <p className="mt-2 text-red-500 text-sm">
+            <p className="mt-2 text-green-500 text-sm">
               {msg}
             </p>
           )}

@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/userRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config();
 console.log(process.env.MONGO_URI);
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);  // ✅ phir routes lagao
-
+app.use('/api/products', productRoutes);  // ✅ phir routes lagao
 app.get("/", (req, res) => {
   res.send("Server Running");
 });

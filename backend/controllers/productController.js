@@ -2,16 +2,26 @@ import productModel from "../models/product.js";
 
 export const createProduct = async (req, res) => {
     try {
+        console.log("Request received");
+        console.log(req.body);
+
         const products = await productModel.create(req.body);
+
+        console.log("Saved:", products);
+
         res.status(201).json({
             message: "Product created successfully",
             product: products
         });
     } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
+    console.log(error);
+    console.log(error.message);
 
+    res.status(400).json({
+        message: error.message
+    });
+}
+};
 // get all products
 export const getProducts = async (req, res) => {
     try {

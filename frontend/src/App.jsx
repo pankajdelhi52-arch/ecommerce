@@ -1,18 +1,30 @@
-import {createBrowserRouter , RouterProvider} from "react-router";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ProductDetails from "./pages/ProductDetails";
 
+import AddProduct from "./admin/AddProduct";
+import ProductList from "./admin/ProductList";
+import EditProduct from "./admin/EditProduct";
+
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
-  {path:"/login", element: <Login />},
-  { path: "/signup", element: <Signup/> },
-  { path: "/product/:id", element: <ProductDetails /> } 
-])
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <Signup /> },
+  { path: "/product/:id", element: <ProductDetails /> },
+
+  { path: "/admin/product", element: <ProductList /> },
+  { path: "/admin/add-product", element: <AddProduct /> },
+{
+  path: "/admin/edit/:id",
+  element: <EditProduct />
+}]);
 
 export default function App() {
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }

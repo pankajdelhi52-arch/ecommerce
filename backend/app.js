@@ -53,7 +53,7 @@ app.post("/api/users", (req, res) => {
         {
             id: 2,
             name: "Mobile",
-            price: 20000
+            price: 20000 
         }
     ]);
 });

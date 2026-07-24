@@ -23,6 +23,7 @@ const handleSubmit = async (e) => {
 
     try {
         await api.post("/products", form);
+            navigate("/admin/product");
         console.log("API called");
     } catch (err) {
         console.log(err);

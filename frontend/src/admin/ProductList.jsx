@@ -24,6 +24,17 @@ const navigate = useNavigate();
     loadProduct();
   }, []);
 
+    // Delete product
+  const update = async (id) => {
+    try {
+      await api.put(`/products/${id}`);
+      alert("Product update successfully");
+      loadProduct();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // Delete product
   const handleDelete = async (id) => {
     try {
@@ -63,11 +74,12 @@ const navigate = useNavigate();
               <td className="border p-2">{product.stock}</td>
 
               <td className="border p-2 space-x-2">
-               <button to={`/admin/edit/${product._id}`}
+               <a 
+               href={`/admin/edit/${product._id}`}
   className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
 >
   Edit
-</button>
+</a>
 
                 <button
                   onClick={() => handleDelete(product._id)}

@@ -17,13 +17,9 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
   { path: "/product/:id", element: <ProductDetails /> },
-
   { path: "/admin/product", element: <ProductList /> },
   { path: "/admin/add-product", element: <AddProduct /> },
-{
-  path: "/admin/edit/:id",
-  element: <EditProduct />
-}]);
+  { path: "/admin/edit/:id", element: <EditProduct />}]);
 
 export default function App() {
   return <RouterProvider router={router} />;

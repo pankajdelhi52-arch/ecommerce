@@ -24,18 +24,14 @@ export default function EditProduct() {
     "stock",
   ];
 
-  useEffect(() => {
-    const loadProduct = async () => {
-      try {
-        const response = await api.get(`/product/${id}`);
-        setForm(response.data);
-      } catch (error) {
-        console.error("Error loading product:", error);
-      }
-    };
+ useEffect(() => {
+  const loadProduct = async () => {
+    const response = await api.get(`/products/${id}`);
+    setForm(response.data);
+  };
 
-    loadProduct();
-  }, [id]);
+  loadProduct();
+}, [id]);
 
 const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
@@ -51,22 +47,25 @@ const handleSubmit = async (e) => {
   console.log("handleSubmit started");
 
   try {
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+     const response = await api.put(`/products/${id}`, form);
+
+    console.log(response.data);
+
+    alert("Product Updated Successfully");
+
+    navigate("/admin/product");
     console.log("API called");
 
     if (response.ok) {
       // ✅ Form fields ko reset karo
-      setForm({
-        name: "",
-        price: "",
-        category: "",
-        image: "",
-        stock: "",
-      });
+ setForm({
+  title: "",
+  description: "",
+  price: "",
+  category: "",
+  image: "",
+  stock: "",
+});
     }
   } catch (error) {
     console.error(error);
